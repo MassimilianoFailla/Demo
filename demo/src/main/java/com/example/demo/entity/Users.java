@@ -1,21 +1,22 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.Data;
 
 //To use the @Data annotation you should add the Lombok dependency.
 @Data
 @Entity
 @Table(name = "users")
-public class Users {
+public class Users implements Serializable {
+
+    private static final long serialVersionUID = 291353626011036772L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
