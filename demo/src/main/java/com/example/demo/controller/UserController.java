@@ -2,16 +2,13 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.Users;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.services.UserServices;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
