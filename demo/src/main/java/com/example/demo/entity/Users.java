@@ -2,12 +2,12 @@ package com.example.demo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 //To use the @Data annotation you should add the Lombok dependency.
@@ -32,14 +32,31 @@ public class Users implements Serializable {
     @Column(name = "birthDate")
     private Date birthDate;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    private List<Medical_Records> medicalListRecords;
+
+    public List<Medical_Records> getMedicalListRecords() {
+        return medicalListRecords;
+    }
+
+    public void setMedicalListRecords(List<Medical_Records> medicalListRecords) {
+        this.medicalListRecords = medicalListRecords;
+    }
+
+    public List<Medical_Records> getMedicalList() {
+        return medicalListRecords;
+    }
+
     public Users() {
     }
 
-    public Users(Long id, String firstname, String lastname, Date birthDate) {
+    public Users(Long id, String firstname, String lastname, Date birthDate, List<Medical_Records> medicalListRecords) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthDate = birthDate;
+        this.medicalListRecords = medicalListRecords;
     }
 
     public Long getId() {
@@ -77,7 +94,7 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "Users [birthDate=" + birthDate + ", firstname=" + firstname + ", id=" + id + ", lastname=" + lastname
-                + "]";
+                + ", medicalListRecords=" + medicalListRecords + "]";
     }
 
 }
